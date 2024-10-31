@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz App</title>
+    <link rel="stylesheet" href="bruh.css">
+</head>
+<body>
+    <div class="container">
+        <a href="settings.html" id="settingsButton" class="settings-btn">
+            <img src="https://img.icons8.com/material-rounded/24/000000/settings.png" alt="Settings">
+        </a>
+        <h1>Flashcard</h1>
+        
+        <!-- Flashcard Creation Form -->
+        <div class="flashcard-form">
+            <h2>Create Flashcards</h2>
+            <form id="flashcardForm">
+                <label for="word">Word:</label><br>
+                <input type="text" id="word" required><br><br>
+    
+                <label for="meaning">Meaning:</label><br>
+                <input type="text" id="meaning" required><br><br>
+    
+                <button type="submit">Add Flashcard</button>
+            </form>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button onclick="window.location.href='flashcardlist.html'">View Flashcard List</button>
+            <button id="startQuizBtn" onclick="startQuiz()">Start Quiz</button>
+              
+        
+
+    <!-- Scripts -->
+    <script src="bruh.js"></script>
+    <script>
+        document.getElementById('flashcardForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            addFlashcard();
+        });
+
+        function startQuiz() {
+            const flashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+            if (flashcards.length >= 4) {
+                window.location.href = 'quiz.html';
+            } else {
+                alert("You need at least 4 flashcards to start the quiz.");
+            }
+        }
+    </script>
+</body>
+</html>
